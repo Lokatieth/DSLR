@@ -1,16 +1,22 @@
+import sys;
 import csv;
 import math;
 import numpy as np
 import matplotlib.pyplot as plt;
 from datetime import datetime;
 
+if len(sys.argv) > 1:
+    path = sys.argv[1]
+else:
+    print ("You need to specify the csv file !")
+    exit()
 
 
 def calculate_standard_deviation(course, mean, count):
     squared_sum = sum([(x - mean) * (x - mean) for x in course])
     return (math.sqrt(squared_sum / count))
 
-with open('resources/dataset_train.csv', newline='') as csvfile:
+with open(path, newline='') as csvfile:
     reader = csv.DictReader(csvfile)
     rows = list(reader)
 
